@@ -1,27 +1,29 @@
 <template>
   <div class="hello">
-    <section class="hero">
-      <h1 class='silver-line'>
-      <span class='h'>H</span><span class='e'>e</span><span class='l1'>l</span><span class='l2'>l</span><span class='o'>o</span><span class='dot'>.</span></h1>
-    </section>
-    <section class='root one'>
-    <header class='header one'>
-      <h1 class='h1 one'>Waiting on YHVH</h1>
-      <p class='p one'>Welcome to Dave Woodall's me.</p>
-    </header>
-    <article class='article one'>
-      <h1 class='h1 header-h1'>The Internet is here to stay</h1>
-      <p class='p one'>
-        I graduated the same year the <i>Internet Bubble Burst</i>. I was a Graphic Designer at the time. I figured the web was a fad. It took me nearly 8 years before I realized that I was wrong. Then, another 4 years before I started building web apps using Ruby on Rails. I've been writing code professionally since 2012.
-      </p>
-      <p class='p one'>
-        5 years is hardly anything when it comes to understanding the complexities of what it takes to write software. As such, I still spend my time online coding, reading, and growing. This is one of the many sites I work on to develop my skills.
-      </p>
-      <p class='p one'>
-        Thanks for stopping by!
-      </p>
-    </article>
-  </section>
+    <div class="menu"></div>
+    <div class="welcome">
+      <div class="nav-curtain"></div>
+      <section class="hero">
+        <div class="header-slant"></div>
+        <h1 class='silver-line'>
+          <span class='h'>H</span><span class='e'>e</span><span class='l1'>l</span><span class='l2'>l</span><span class='o'>o</span><span class='dot'>.</span></h1>
+        </section>
+        <section class='root'>
+          <header class='header'>
+            <div class="header-slant-reverse"></div>
+            <h1 class='h1 title'>{{ copy.title }}</h1>
+          </header>
+          <article class='article'>
+            <div class="header-slant"></div>
+            <section class="copy">
+              <p class='p' ><span v-html='copy.intro'></span> <a class='link' href='http://www.davewoodall.com'>Dave Woodall</a>.</p>
+            </section>
+          </article>
+        </section>
+        <div class="secret">
+          <h1>{{ copy.salutation }}</h1>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -30,25 +32,21 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Waiting on YHVH'
+      copy: {
+        title: "Welcome to Internetland.",
+        welcome: "I'm dave",
+        intro: "A personal site by",
+        salutation: "I'm learning VueJS and rebuilding my personal page for practice. Check back soon for updates!"
+      }
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  body {
-    background: #ece7e5;
-    padding: 0;
-    margin: 0;
-  }
-
-
-  /* .silver-line */
-
   .hero {
+    position: relative;
     background: #383636;
     background-image: linear-gradient(-140deg, #2F494B, #3F272D);
   }
@@ -73,52 +71,68 @@ export default {
   @media only screen and (min-width: 1300px) {
     .silver-line {
       margin-top: -0.25em;
-      padding-top: 1.8em;
+      padding-top: 0.85em;
       font-size: 15em;
     }
   }
+  .header-slant, .header-slant-reverse  {
+    border-left: 120px solid #eef1bd;
+    transform: skewX(-17deg) translateX(200px);
+    position: absolute;
+    right: 0;
+    background: #e7ec8b;
+    width: 30%;
+    height: 100%;
+  }
 
-  /* .root  */
-  .root {
-    font-family: georgia;
-    padding-left: 1em;
-    padding-right: 1em;
+  .header-slant-reverse {
+    transform: skewX(17deg) translateX(250px);
   }
-  .root .h1 {
-    font-style: italic;
-    font-weight: 100;
-  }
-  .root .p {
-    line-height: 28px;
-  }
-  /*
-  @media only screen and (min-width: 500px) {
-    .root {
-      padding-left: 5em;
-      padding-right: 3em;
-    }
-  }
-  @media only screen and (min-width: 800px) {
-    .root {
-      padding-left: 22em;
-      padding-right: 5em;
-    }
-  }
-  @media only screen and (min-width: 1300px) {
-    .root {
-      padding-left: 30em;
-      padding-right: 15em;
-    }
-  }*/
 
-  .header .p {
-    font-size: 1.25em;
+  h1, p { margin: 0; }
+  .p, .h1 {
+    position: relative;
+    z-index: 10;
   }
+
+  .header .h1 {
+    font-weight: 200;
+    padding: 0.35em;
+    padding-left: 0.25em;
+    font-size: 4.5em;
+  }
+
+  .header {
+    position: relative;
+    background: #48cb7d;
+    color:#2F494B;
+    margin: 0;
+  }
+  .article {
+    position: relative;
+    margin: 0;
+    background: #48cb7d;
+    width: 83%;
+    color:#2F494B;
+  }
+
+
+  .article .copy {
+    width: 70%;
+    font-size: 1.2em;
+    color: #eef1bd;
+    line-height: 30px;
+    box-sizing: border-box;
+    padding: 3em;
+  }
+
   .silver-line span {
     display: inline-block;
     margin: 0;
     padding: 0;
   }
+
+  .link { color: #e4ba80;}
 
   .h { color: #48cb7d; }
   .e { color: #31f777; }
@@ -127,24 +141,55 @@ export default {
   .o { color: #6cdee6; }
   .dot { color: #ae7dd4; }
 
-  .bio {
-    width: 100%;
+  .menu {
+    width: 300px;
+    height: 100%;
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
   }
 
-  .footer .bio img {
-    width: 100%;
-    transform: rotate(-4deg);
-    box-shadow: 1px 2px 2px  #666;
+  .welcome {
+    transition: all 400ms cubic-bezier(.79,.05,.5,.99);
+    position: relative;
+  }
+  .menu:hover + .welcome {
+    transition: all 400ms cubic-bezier(.79,.05,.5,.99);
+    transform: translateX(-700px);
   }
 
-  .footer .bio img {
-    width: 100%;
-    transform: rotate(-4deg);
-    box-shadow: 1px 2px 2px  #666;
+  .nav-curtain {
+    transition: all 600ms cubic-bezier(.79,.05,.5,.99);
+    background: rgba(0,0,0,0);
+    transform: skewX(-17deg) translateX(0px);
+    width: 0px;
   }
 
-  .footer .content {
-    float: right;
-    text-align: right;
+  .menu:hover ~ .welcome > .nav-curtain {
+    transition: all 600ms cubic-bezier(.79,.05,.5,.99);
+    width: 1400px;
+    height: 1000px;
+    background: rgba(231, 236, 139, 0.5);
+    position: absolute;
+    z-index: 100;
   }
+
+  .secret {
+    transition: all 600ms cubic-bezier(.79,.05,.5,.99);
+    opacity: 0;
+    position: fixed;
+    transform: translateX(30em) translateY(10em);
+    top: 0;
+    right: 0;
+    width: 30%;
+    line-height: 40px;
+  }
+
+  .menu:hover ~ .welcome > .secret {
+    opacity: 1;
+  }
+
 </style>
