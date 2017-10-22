@@ -21,11 +21,6 @@
         Thanks for stopping by!
       </p>
     </article>
-    <article class='article one'>
-      <h1 class='h1 one'>More... </h1>
-      <h2 class='h1'><a href="/trio">Trio (demo)</a> - HTML, CSS, JS play well together</h2>
-      <h2 class='h1'><a href="http://www.davewoodall.com">My Resume</a> - ever a WIP</h2>
-    </article>
   </section>
   </div>
 </template>
@@ -53,9 +48,12 @@ export default {
 
   /* .silver-line */
 
-  .silver-line {
+  .hero {
     background: #383636;
     background-image: linear-gradient(-140deg, #2F494B, #3F272D);
+  }
+
+  .silver-line {
     margin-top: -0.1em;
     padding-top: 1em;
     font-size: 5em;
