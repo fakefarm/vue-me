@@ -5,6 +5,7 @@
   "author": "fakefarm <dave@woodalls.me>",
   "private": true,
   "scripts": {
+    "deploy": "node ./node_modules/vue-gh-pages/index.js",
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
@@ -15,6 +16,7 @@
   },
   "dependencies": {
     "vue": "^2.5.2",
+    "vue-gh-pages": "^1.5.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
